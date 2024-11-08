@@ -7,7 +7,7 @@ You can use the file ```Cleaning_pixel_outliers.ipynb``` as an example of the im
 
 The method for calling Letter-value plots:<br/>
 ```
-LvPlots.lvplots(image,rule='trustworthy',ci=95,ol_prop=0.007,left_fill=0,right_fill=0,zero=False)
+LvPlots.lvplots(image,rule='trustworthy',ci=95,ol_prop=0.007,side='both',left_fill=0,right_fill=0,zero=False)
 ```
 
 ```image``` is the image to be processed. The ```image``` must be a single band image and in NumPy array format. You can use Rasterio or GDAL to open your image file.<br/>
@@ -18,7 +18,9 @@ LvPlots.lvplots(image,rule='trustworthy',ci=95,ol_prop=0.007,left_fill=0,right_f
 
 ```ol_prop``` is the proportion of outliers. This parameter will only take effect if you set ```rule='proportion'```. The default value is ```0.007```. You can change it to another value, and it must be less than 1.<br/>
 
-```left_fill``` and ```right_fill``` are values ​​that will replace outlier values, respectively for the left side (outlier values ​​that are too low) and for the right side (outlier values ​​that are too high). By default, outlier values ​​in a digital image on both sides will be replaced with 0. You can use other values ​​if desired. If you want the fence value(s) to be used as replacements for outliers, then ```left_fill``` or ```right_fill``` can be set to ```'fence'```, e.g. ```left_fill='fence'``` or ```right_fill='fence'```.<br/>
+```side``` is an option to choose whether outliers are removed on both sides, or only on the left side (outlier values ​​​​that are too low) or only on the right side (outlier values ​​​​that are too high). The default is ```side='both'```, you can set ```side='left'``` or ```side='right'```.
+
+```left_fill``` and ```right_fill``` are values ​​that will replace outlier values, respectively for the left and the right side. By default, outlier values ​​in a digital image on both sides will be replaced with 0. You can use other values ​​if desired. If you want the fence value(s) to be used as replacements for outliers, then ```left_fill``` or ```right_fill``` can be set to ```'fence'```, e.g. ```left_fill='fence'``` or ```right_fill='fence'```.<br/>
 
 ```zero``` is the option whether the value 0 will be included in the outliers calculation or not. The recommended and the default value is ```False```, meaning the value 0 is not included. If you want the value 0 to be part of the outliers calculation, set ```zero=True```.<br/>
 
