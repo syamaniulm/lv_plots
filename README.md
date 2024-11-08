@@ -3,7 +3,7 @@ Letter-value plots to eliminate anomalies or outlier pixel values ​​in digit
 
 ### Instructions:
 
-You can use that file ```Cleaning_pixel_outliers.ipynb``` as an example of the implementation. The file ```Cleaning_pixel_outliers.ipynb``` and ```LvPlots.py``` must be located in the same directory.<br/>
+You can use the file ```Cleaning_pixel_outliers.ipynb``` as an example of the implementation. The file ```Cleaning_pixel_outliers.ipynb``` and ```LvPlots.py``` file must be located in the same directory.<br/>
 
 The method for calling Letter-value plots:<br/>
 ```
