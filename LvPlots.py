@@ -11,7 +11,7 @@ Hofmann, H., Wickham, H., & Kafadar, K. (2017). Letter-Value Plots: Boxplots for
 class LvPlots:
     
     @staticmethod
-    def lvplots(image,rule='trustworthy',z_value=1.96,ol_prop=0.007,left_fill=0,right_fill=0,zero=False):
+    def lvplots(image,rule='trustworthy',ci=95,ol_prop=0.007,left_fill=0,right_fill=0,zero=False):
     
         print('Starting Letter-value plots computation...')
 
@@ -22,25 +22,26 @@ class LvPlots:
         image[np.isnan(image)] = 0
         image[np.isinf(image)] = 0
         
-        # Reshaping image array
-        # And deciding whether zero is included or not
+        # Reshaping image array and deciding whether zero is included or not
         if zero == True:
             image_array = np.reshape(np.array(image), (-1,1))
         else:
             image_array = np.reshape(np.array(image[image != 0]), (-1,1))
 
-        # Defining how deep to dive in Letter-value plots
-        if rule == 'proportion':
-            n_samples = len(image_array)
+        # Determining of sample size
+        n_samples = len(image_array)
+
+        # Defining how deep to dive in the Letter-value plots
+        if rule == 'trustworthy':
+            from scipy import stats
+            alpha = (100 - ci) / 100
+            z_score = stats.norm.ppf(1-(1-(1-alpha))/2)
+            lv_stop = int(np.floor(np.log2(n_samples)) - np.floor(np.log2(2*(z_score**2))))
+        elif rule == 'proportion':
             lv_stop = int(np.floor(np.log2(n_samples)) - np.floor(np.log2(n_samples*ol_prop)))
-        elif rule == 'trustworthy':
-            n_samples = len(image_array)
-            lv_stop = int(np.floor(np.log2(n_samples)) - np.floor(np.log2(2*(z_value**2))))
         elif rule == 'tukey':
-            n_samples = len(image_array)
             lv_stop = int(np.floor(np.log2(n_samples)) - 3)
         elif rule == 'full':
-            n_samples = len(image_array)
             lv_stop = int(np.floor(np.log2(n_samples)) + 1)
         else:
             print("There was an argument error in the rule parameter.")
@@ -77,14 +78,12 @@ class LvPlots:
         print('Letter-value plots computation completed...')
 
         # Drawing the Letter-value plots
-        if rule == 'proportion':
+        if rule == 'trustworthy':
+            ax_lvplots = sns.boxenplot(x=image_array[:,0], k_depth='trustworthy', trust_alpha=alpha)
+        elif rule == 'proportion':
             ax_lvplots = sns.boxenplot(x=image_array[:,0], k_depth='proportion', outlier_prop=ol_prop)
-        elif rule == 'tukey':
-            ax_lvplots = sns.boxenplot(x=image_array[:,0], k_depth='tukey')
-        elif rule == 'full':
-            ax_lvplots = sns.boxenplot(x=image_array[:,0], k_depth='full')
         else:
-            ax_lvplots = sns.boxenplot(x=image_array[:,0], k_depth='trustworthy')
+            ax_lvplots = sns.boxenplot(x=image_array[:,0], k_depth=rule)
 
         ax_lvplots.set_title(f'Letter-value plots using {rule}', fontsize=16)
 
