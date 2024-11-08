@@ -5,9 +5,9 @@ Letter-value plots to eliminate anomalies or outlier pixel values ​​in digit
 Python 3.9 or higher<br />
 
 ### Required packages:<br />
-Rasterio (https://anaconda.org/conda-forge/rasterio)
-NumPy (https://anaconda.org/anaconda/numpy)
-Seaborn ((https://anaconda.org/anaconda/seaborn))
+Rasterio (https://anaconda.org/conda-forge/rasterio)<br/>
+NumPy (https://anaconda.org/anaconda/numpy)<br/>
+Seaborn ((https://anaconda.org/anaconda/seaborn))<br/>
 
 ### Other requirements:<br />
 The codes are intended to be run in the JupyterLab environment.<br />
