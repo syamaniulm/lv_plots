@@ -11,7 +11,7 @@ Hofmann, H., Wickham, H., & Kafadar, K. (2017). Letter-Value Plots: Boxplots for
 class LvPlots:
     
     @staticmethod
-    def lvplots(image,rule='trustworthy',ci=95,ol_prop=0.007,left_fill=0,right_fill=0,zero=False):
+    def lvplots(image,rule='trustworthy',ci=95,ol_prop=0.007,side='both',left_fill=0,right_fill=0,zero=False):
     
         print('Starting Letter-value plots computation...')
 
@@ -45,7 +45,7 @@ class LvPlots:
             lv_stop = int(np.floor(np.log2(n_samples)) + 1)
         else:
             print("There was an argument error in the rule parameter.")
-            print("Select one argument: 'proportion', 'trustworthy', 'tukey', or 'full'.")
+            print("Select one of the argument: 'proportion', 'trustworthy', 'tukey', or 'full'.")
 
         # Calculating the main median (the letter "M") of the data
         dm = np.median(image_array)
@@ -72,15 +72,28 @@ class LvPlots:
         print('Right outlier fence : {}'.format(right_outlier_fence))
 
         # Removing anomaly pixel values from original image
-        if left_fill == 'fence':
-            image[np.where(image < left_outlier_fence)] = left_outlier_fence
+        if side == 'both':
+            if left_fill == 'fence':
+                image[np.where(image < left_outlier_fence)] = left_outlier_fence
+            else:
+                image[np.where(image < left_outlier_fence)] = left_fill
+            if right_fill == 'fence':
+                image[np.where(image > right_outlier_fence)] = right_outlier_fence
+            else:
+                image[np.where(image > right_outlier_fence)] = right_fill
+        elif side == 'left':
+            if left_fill == 'fence':
+                image[np.where(image < left_outlier_fence)] = left_outlier_fence
+            else:
+                image[np.where(image < left_outlier_fence)] = left_fill
+        elif side == 'right':
+            if right_fill == 'fence':
+                image[np.where(image > right_outlier_fence)] = right_outlier_fence
+            else:
+                image[np.where(image > right_outlier_fence)] = right_fill
         else:
-            image[np.where(image < left_outlier_fence)] = left_fill
-
-        if right_fill == 'fence':
-            image[np.where(image > right_outlier_fence)] = right_outlier_fence
-        else:
-            image[np.where(image > right_outlier_fence)] = right_fill
+            print("There was an argument error in the side parameter.")
+            print("Select one of the argument: 'both', 'left', or 'right'.")
 
         print('Letter-value plots computation completed...')
 
