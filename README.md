@@ -7,7 +7,7 @@ You can use the file ```Cleaning_pixel_outliers.ipynb``` as an example of the im
 
 The method for calling Letter-value plots:<br/>
 ```
-LvPlots.lvplots(image,rule='trustworthy',left_fill=0,right_fill=0,ol_prop=0.07,zero=False)
+LvPlots.lvplots(image,rule='trustworthy',left_fill=0,right_fill=0,ol_prop=0.007,zero=False)
 ```
 
 ```image``` is the image to be processed. ```image``` must be in NumPy array format. You can use Rasterio or GDAL to open your image file.<br/>
@@ -16,7 +16,7 @@ There are four rules that can be applied in ```rule```, namely ```'trustworthy'`
 
 ```left_fill``` and ```right_fill``` are values ​​that will replace outlier values. By default, outlier values ​​in digital images will be replaced with 0. You can use other values ​​if desired.<br/>
 
-```ol_prop``` is the proportion of outliers. The default value is 0.07. You can change it to another value, and it must be less than 1.<br/>
+```ol_prop``` is the proportion of outliers. The default value is 0.007. You can change it to another value, and it must be less than 1.<br/>
 
 ```zero``` is the option whether the value 0 will be included in the outliers calculation or not. The default value is ```False```, meaning the value 0 is not included. If you want the value 0 to be part of the outliers calculation, set ```zero=True```.<br/>
 
