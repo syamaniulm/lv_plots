@@ -72,16 +72,23 @@ class LvPlots:
         print('Right outlier fence : {}'.format(right_outlier_fence))
 
         # Removing anomaly pixel values from original image
-        image[np.where(image < left_outlier_fence)] = left_fill
-        image[np.where(image > right_outlier_fence)] = right_fill
+        if left_fill == 'fence':
+            image[np.where(image < left_outlier_fence)] = left_outlier_fence
+        else:
+            image[np.where(image < left_outlier_fence)] = left_fill
+
+        if right_fill == 'fence':
+            image[np.where(image > right_outlier_fence)] = right_outlier_fence
+        else:
+            image[np.where(image > right_outlier_fence)] = right_fill
 
         print('Letter-value plots computation completed...')
 
         # Drawing the Letter-value plots
         if rule == 'trustworthy':
-            ax_lvplots = sns.boxenplot(x=image_array[:,0], k_depth='trustworthy', trust_alpha=alpha)
+            ax_lvplots = sns.boxenplot(x=image_array[:,0], k_depth=rule, trust_alpha=alpha)
         elif rule == 'proportion':
-            ax_lvplots = sns.boxenplot(x=image_array[:,0], k_depth='proportion', outlier_prop=ol_prop)
+            ax_lvplots = sns.boxenplot(x=image_array[:,0], k_depth=rule, outlier_prop=ol_prop)
         else:
             ax_lvplots = sns.boxenplot(x=image_array[:,0], k_depth=rule)
 
