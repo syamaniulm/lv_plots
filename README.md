@@ -12,11 +12,11 @@ LvPlots.lvplots(image,rule='trustworthy',z_value=1.96,ol_prop=0.007,left_fill=0,
 
 ```image``` is the image to be processed. ```image``` must be in NumPy array format. You can use Rasterio or GDAL to open your image file.<br/>
 
-```rule``` is a parameter to stop the formation of letter-value plots. There are four rules that can be applied in ```rule```, namely ```'trustworthy'``` (default), ```'proportion'```, ```'tukey'```, and ```'full'```. For a more complete explanation, please read the literature listed below.<br/>
+```rule``` is a parameter to stop the formation of Letter-value plots. There are four rules that can be set for ```rule```, namely ```'trustworthy'``` (default), ```'proportion'```, ```'tukey'```, and ```'full'```. For a more complete explanation, please read the literature listed below.<br/>
 
 ```z_value``` will only have an effect if ```rule='trustworthy'```. ```z_value=1.96``` is the default value for a 95% confidence interval. If you want a 99% confidence interval, set ```z_value=2.58```, or set ```z_value=1.65``` for a 90% confidence interval.<br/>
 
-```ol_prop``` is the proportion of outliers. This parameter will only take effect if you set ```rule='proportion'```. This The default value is ```0.007```. You can change it to another value, and it must be less than 1.<br/>
+```ol_prop``` is the proportion of outliers. This parameter will only take effect if you set ```rule='proportion'```. The default value is ```0.007```. You can change it to another value, and it must be less than 1.<br/>
 
 ```left_fill``` and ```right_fill``` are values ​​that will replace outlier values, respectively for the left side (outlier values ​​that are too low) and for the right side (outlier values ​​that are too high). By default, outlier values ​​in a digital image on both sides will be replaced with 0. You can use other values ​​if desired.<br/>
 
