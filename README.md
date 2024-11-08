@@ -14,7 +14,7 @@ LvPlots.lvplots(image,rule='trustworthy',ci=95,ol_prop=0.007,left_fill=0,right_f
 
 ```rule``` is a parameter to stop the formation of the Letter-value plots. There are four rules that can be set for ```rule```, namely ```'trustworthy'```, ```'proportion'```, ```'tukey'```, and ```'full'```. For a more complete explanation, please read the literature listed below. If you do not set any value for ```rule``` then the default value of ```'trustworthy'``` will be used.<br/>
 
-```ci``` ci is the confidence interval, the default value is 95%. ```ci``` will only have an effect if ```rule='trustworthy'```. You can set the value to ```ci=90``` or ```ci=99```, according to your needs.<br/>
+```ci``` is the confidence interval, the default value is 95%. ```ci``` will only have an effect if ```rule='trustworthy'```. You can set the value to ```ci=90``` or ```ci=99```, according to your needs.<br/>
 
 ```ol_prop``` is the proportion of outliers. This parameter will only take effect if you set ```rule='proportion'```. The default value is ```0.007```. You can change it to another value, and it must be less than 1.<br/>
 
