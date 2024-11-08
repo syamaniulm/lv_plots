@@ -12,7 +12,7 @@ LvPlots.lvplots(image,rule='trustworthy',z_value=1.96,ol_prop=0.007,left_fill=0,
 
 ```image``` is the image to be processed. ```image``` must be in NumPy array format. You can use Rasterio or GDAL to open your image file.<br/>
 
-```rule``` is a parameter to stop the formation of Letter-value plots. There are four rules that can be set for ```rule```, namely ```'trustworthy'``` (default), ```'proportion'```, ```'tukey'```, and ```'full'```. For a more complete explanation, please read the literature listed below.<br/>
+```rule``` is a parameter to stop the formation of the Letter-value plots. There are four rules that can be set for ```rule```, namely ```'trustworthy'``` (default), ```'proportion'```, ```'tukey'```, and ```'full'```. For a more complete explanation, please read the literature listed below.<br/>
 
 ```z_value``` will only have an effect if ```rule='trustworthy'```. ```z_value=1.96``` is the default value for a 95% confidence interval. If you want a 99% confidence interval, set ```z_value=2.58```, or set ```z_value=1.65``` for a 90% confidence interval.<br/>
 
