@@ -11,7 +11,7 @@ Hofmann, H., Wickham, H., & Kafadar, K. (2017). Letter-Value Plots: Boxplots for
 class LvPlots:
     
     @staticmethod
-    def lvp(image,rule='trustworthy'):
+    def lvplots(image,rule='trustworthy',left_fill=0,right_fill=0,ol_prop=0.07,zero=False):
     
         print('Starting Letter-value plots computation...')
 
@@ -23,23 +23,14 @@ class LvPlots:
         image[np.isinf(image)] = 0
         
         # Reshaping image array
-        image_array = np.reshape(np.array(image[image != 0]), (-1,1))
-
-        # Calculating the main median (the letter "M") of the data
-        dm = np.median(image_array)
-
-        # Finding the first left and right boxes
-        Left_box = image_array[image_array <= dm]
-        Right_box = image_array[image_array > dm]
-
-        # Calculating the first left and right boxes median (the letter "F") of the data
-        left_med = np.median(Left_box)
-        right_med = np.median(Right_box)
+        # And deciding whether zero is included or not
+        if zero == True:
+            image_array = np.reshape(np.array(image), (-1,1))
+        else:
+            image_array = np.reshape(np.array(image[image != 0]), (-1,1))
 
         # Defining how deep to dive in Letter-value plots
         if rule == 'proportion':
-            # Assuming outliers contamination proportion of the data is 0.7%
-            ol_prop = 0.007
             n_samples = len(image_array)
             lv_stop = int(np.floor(np.log2(n_samples)) - np.floor(np.log2(n_samples*ol_prop)))
         elif rule == 'trustworthy':
@@ -54,8 +45,19 @@ class LvPlots:
             n_samples = len(image_array)
             lv_stop = int(np.floor(np.log2(n_samples)) + 1)
         else:
-            print("There was an argument error in the rule.")
+            print("There was an argument error in the rule parameter.")
             print("Select one argument: 'proportion', 'trustworthy', 'tukey', or 'full'.")
+
+        # Calculating the main median (the letter "M") of the data
+        dm = np.median(image_array)
+
+        # Finding the first left and right boxes
+        Left_box = image_array[image_array <= dm]
+        Right_box = image_array[image_array > dm]
+
+        # Calculating the first left and right boxes median (the letter "F") of the data
+        left_med = np.median(Left_box)
+        right_med = np.median(Right_box)
 
         # Constructing the next left and right boxes to the last boxes
         for lv in range(2,lv_stop):
@@ -71,13 +73,14 @@ class LvPlots:
         print('Right outlier fence : {}'.format(right_outlier_fence))
 
         # Removing anomaly pixel values from original image
-        image[np.where((image < left_outlier_fence) | (image > right_outlier_fence))] = 0
+        image[np.where(image < left_outlier_fence)] = left_fill
+        image[np.where(image > right_outlier_fence)] = right_fill
 
         print('Letter-value plots computation completed...')
 
         # Drawing the Letter-value plots
         if rule == 'proportion':
-            ax_lvplots = sns.boxenplot(x=image_array[:,0], k_depth=rule, outlier_prop=ol_prop)
+            ax_lvplots = sns.boxenplot(x=image_array[:,0], k_depth='proportion', outlier_prop=ol_prop)
         elif rule == 'tukey':
             ax_lvplots = sns.boxenplot(x=image_array[:,0], k_depth='tukey')
         elif rule == 'full':
