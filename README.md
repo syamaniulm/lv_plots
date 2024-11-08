@@ -5,6 +5,8 @@ Letter-value plots to eliminate anomalies or outlier pixel values ​​in digit
 
 You can use that file Cleaning_pixel_outliers.ipynb as an example of the implementation.<br/>
 
+$${\color{red}LvPlots.lvplots(image,rule='trustworthy',left_fill=0,right_fill=0,ol_prop=0.07,zero=False)}$$
+
 <font-face: 'Consolas', color: blue>
 LvPlots.lvplots(image,rule='trustworthy',left_fill=0,right_fill=0,ol_prop=0.07,zero=False)<br/>
 </font>
