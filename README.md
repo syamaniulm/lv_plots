@@ -7,14 +7,14 @@ You can use the file ```Cleaning_pixel_outliers.ipynb``` as an example of the im
 
 The method for calling Letter-value plots:<br/>
 ```
-LvPlots.lvplots(image,rule='trustworthy',z_value=1.96,ol_prop=0.007,left_fill=0,right_fill=0,zero=False)
+LvPlots.lvplots(image,rule='trustworthy',ci=95,ol_prop=0.007,left_fill=0,right_fill=0,zero=False)
 ```
 
-```image``` is the image to be processed. ```image``` must be in NumPy array format. You can use Rasterio or GDAL to open your image file.<br/>
+```image``` is the image to be processed. The ```image``` must be a single band image and in NumPy array format. You can use Rasterio or GDAL to open your image file.<br/>
 
-```rule``` is a parameter to stop the formation of the Letter-value plots. There are four rules that can be set for ```rule```, namely ```'trustworthy'``` (default), ```'proportion'```, ```'tukey'```, and ```'full'```. For a more complete explanation, please read the literature listed below.<br/>
+```rule``` is a parameter to stop the formation of the Letter-value plots. There are four rules that can be set for ```rule```, namely ```'trustworthy'```, ```'proportion'```, ```'tukey'```, and ```'full'```. For a more complete explanation, please read the literature listed below. If you do not set any value for ```rule``` then the default value of ```'trustworthy'``` will be used.<br/>
 
-```z_value``` will only have an effect if ```rule='trustworthy'```. ```z_value=1.96``` is the default value for a 95% confidence interval. If you want a 99% confidence interval, set ```z_value=2.58```, or set ```z_value=1.65``` for a 90% confidence interval.<br/>
+```ci``` ci is the confidence interval, the default value is 95%. ```ci``` will only have an effect if ```rule='trustworthy'```. You can set the value to ```ci=90``` or ```ci=99```, according to your needs.<br/>
 
 ```ol_prop``` is the proportion of outliers. This parameter will only take effect if you set ```rule='proportion'```. The default value is ```0.007```. You can change it to another value, and it must be less than 1.<br/>
 
@@ -28,6 +28,7 @@ Python 3.9 or higher<br/>
 ### Required packages:<br/>
 Rasterio (https://anaconda.org/conda-forge/rasterio)<br/>
 NumPy (https://anaconda.org/anaconda/numpy)<br/>
+SciPy (https://anaconda.org/anaconda/scipy)<br/>
 Seaborn ((https://anaconda.org/anaconda/seaborn))<br/>
 
 ### Other requirements:<br/>
