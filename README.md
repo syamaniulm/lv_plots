@@ -11,7 +11,7 @@ LvPlots.lvplots(image,rule='trustworthy',left_fill=0,right_fill=0,ol_prop=0.07,z
 
 ```image``` is the image to be processed. ```image``` must be in NumPy array format. You can use Rasterio or GDAL to open your image file.<br/>
 
-There are four rules that can be applied in ```rule```, namely 'trustworthy' (default), 'proportion', 'tukey', and 'full'. For a more complete explanation, please read the literature listed below.<br/>
+There are four rules that can be applied in ```rule```, namely ```'trustworthy'``` (default), ```'proportion'```, ```'tukey'```, and ```'full'```. For a more complete explanation, please read the literature listed below.<br/>
 
 ```left_fill``` and ```right_fill``` are values ​​that will replace outlier values. By default, outlier values ​​in digital images will be replaced with 0. You can use other values ​​if desired.<br/>
 
