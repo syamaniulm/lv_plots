@@ -11,7 +11,7 @@ Hofmann, H., Wickham, H., & Kafadar, K. (2017). Letter-Value Plots: Boxplots for
 class LvPlots:
     
     @staticmethod
-    def lvplots(image,rule='trustworthy',left_fill=0,right_fill=0,ol_prop=0.007,z_value = 1.96,zero=False):
+    def lvplots(image,rule='trustworthy',z_value=1.96,ol_prop=0.007,left_fill=0,right_fill=0,zero=False):
     
         print('Starting Letter-value plots computation...')
 
