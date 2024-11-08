@@ -6,7 +6,7 @@ Letter-value plots to eliminate anomalies or outlier pixel values ​​in digit
 You can use that file Cleaning_pixel_outliers.ipynb as an example of the implementation.<br/>
 
 ```diff
-@@LvPlots.lvplots(image,rule='trustworthy',left_fill=0,right_fill=0,ol_prop=0.07,zero=False)<br/>@@
+@LvPlots.lvplots(image,rule='trustworthy',left_fill=0,right_fill=0,ol_prop=0.07,zero=False)<br/>@
 ```
 
 image is the image to be processed. image must be in NumPy array format. You can use Rasterio or GDAL to open your image file.<br/>
