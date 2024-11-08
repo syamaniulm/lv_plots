@@ -11,7 +11,7 @@ Hofmann, H., Wickham, H., & Kafadar, K. (2017). Letter-Value Plots: Boxplots for
 class LvPlots:
     
     @staticmethod
-    def lvplots(image,rule='trustworthy',left_fill=0,right_fill=0,ol_prop=0.007,zero=False):
+    def lvplots(image,rule='trustworthy',left_fill=0,right_fill=0,ol_prop=0.007,z_value = 1.96,zero=False):
     
         print('Starting Letter-value plots computation...')
 
@@ -34,8 +34,6 @@ class LvPlots:
             n_samples = len(image_array)
             lv_stop = int(np.floor(np.log2(n_samples)) - np.floor(np.log2(n_samples*ol_prop)))
         elif rule == 'trustworthy':
-            # Using a 95% confidence interval
-            z_value = 1.96
             n_samples = len(image_array)
             lv_stop = int(np.floor(np.log2(n_samples)) - np.floor(np.log2(2*(z_value**2))))
         elif rule == 'tukey':
