@@ -24,8 +24,10 @@ class LvPlots:
         
         # Reshaping image array and deciding whether zero is included or not
         if zero == True:
+            print('The value 0 in the original image is included in the calculation...')
             image_array = np.reshape(np.array(image), (-1,1))
         else:
+            print('The value 0 in the original image is excluded in the calculation...')
             image_array = np.reshape(np.array(image[image != 0]), (-1,1))
 
         # Determining of sample size
@@ -59,20 +61,24 @@ class LvPlots:
         right_med = np.median(Right_box)
 
         # Constructing the next left and right boxes to the last boxes
+        print(f"Constructing Letter-value plots using '{rule}'...")
         for lv in range(2,lv_stop):
             Left_box = Left_box[Left_box <= left_med]
             Right_box = Right_box[Right_box > right_med]
             left_med = np.median(Left_box)
             right_med = np.median(Right_box)
 
-        left_outlier_fence = round(left_med, 3)
-        right_outlier_fence = round(right_med, 3)
+        left_outlier_fence = round(left_med, 6)
+        right_outlier_fence = round(right_med, 6)
         
-        print('Left outlier fence  : {}'.format(left_outlier_fence))
-        print('Right outlier fence : {}'.format(right_outlier_fence))
+        print(f'Left outlier fence  : {left_outlier_fence}')
+        print(f'Right outlier fence : {right_outlier_fence}')
 
-        # Removing anomaly pixel values from original image
+        # Replacing anomaly pixel values from original image
         if side == 'both':
+            print('Removing outliers on both sides...')
+            print(f'Replacing left side outliers using {left_fill}...')
+            print(f'Replacing right side outliers using {right_fill}...')
             if left_fill == 'fence':
                 image[np.where(image < left_outlier_fence)] = left_outlier_fence
             else:
@@ -82,11 +88,15 @@ class LvPlots:
             else:
                 image[np.where(image > right_outlier_fence)] = right_fill
         elif side == 'left':
+            print('Removing outliers only on the left side...')
+            print(f'Replacing left side outliers using {left_fill}...')
             if left_fill == 'fence':
                 image[np.where(image < left_outlier_fence)] = left_outlier_fence
             else:
                 image[np.where(image < left_outlier_fence)] = left_fill
         elif side == 'right':
+            print('Removing outliers only on the right side...')
+            print(f'Replacing right side outliers using {right_fill}...')
             if right_fill == 'fence':
                 image[np.where(image > right_outlier_fence)] = right_outlier_fence
             else:
