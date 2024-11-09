@@ -18,15 +18,15 @@ cleaned_image = LvPlots.lvplots(image,rule='trustworthy',ci=95,ol_prop=0.007,sid
 
 ```rule``` is a parameter to stop the construction of the Letter-value plots. There are four optional arguments that can be set for ```rule```, namely ```'trustworthy'```, ```'proportion'```, ```'tukey'```, and ```'full'```. For a more complete explanation, please read the literature listed below and https://seaborn.pydata.org/generated/seaborn.boxenplot.html. If you do not set any value for ```rule``` then the default value of ```'trustworthy'``` will be used.<br/>
 
-```ci``` is the confidence interval, the default setting is ```ci=95``` (meaning 95% confidence interval). ```ci``` will only have an effect if ```rule='trustworthy'```. You can set the value to ```ci=90``` or ```ci=99```, according to your needs.<br/>
+```ci``` is the confidence interval. ```ci``` will only have an effect if ```rule='trustworthy'```. The default setting is ```ci=95``` (meaning 95% confidence interval). You can set the value to ```ci=90``` or ```ci=99```, according to your needs.<br/>
 
 ```ol_prop``` is the proportion of outliers. This parameter will only take effect if you set ```rule='proportion'```. The default value is ```0.007```. You can change it to another value, and it must be less than 1.<br/>
 
-```side``` is an option to choose whether outliers are removed on both sides, or only on the left side (outlier values ​​​​that are too low) or only on the right side (outlier values ​​​​that are too high). Some mathematical operations will only produce extreme values ​​on the right side or values ​​that are too high, while the low values ​​are still in normal terms. The default setting is ```side='both'```, you can set ```side='left'``` or ```side='right'```.
+```side``` is an option to choose whether outliers are removed on both sides, or only on the left side (outlier values ​​​​that are too low) or only on the right side (outlier values ​​​​that are too high). Some mathematical operations may only produce extreme values ​​on the right side or values ​​that are too high, and some mathematical operations may do the opposite. The default setting is ```side='both'```, you can set ```side='left'``` or ```side='right'```.
 
 ```left_fill``` and ```right_fill``` are values ​​that will replace outlier values, respectively for the left and the right side. By default, outlier values ​​in a digital image on both sides will be replaced with 0. You can use other values ​​if desired. If you want the fence value(s) to be used as replacements for outliers, then ```left_fill``` or ```right_fill``` can be set to ```'fence'```, e.g. ```left_fill='fence'``` or ```right_fill='fence'```.<br/>
 
-```zero``` is the option whether the value 0 in the original image will be included in the outliers calculation or not. The recommended and the default value is ```False```, meaning the value 0 is not included. If you want the value 0 to be part of the outliers calculation, set ```zero=True```.<br/>
+```zero``` is the option whether the value 0 in the original image will be included in the outliers calculation or not. The recommended and the default value is ```False```, meaning the value 0 is excluded. If you want the value 0 to be part of the outliers calculation, set ```zero=True```.<br/>
 
 ### Python prerequisites:<br/>
 Python 3.9 or higher<br/>
@@ -35,10 +35,7 @@ Python 3.9 or higher<br/>
 Rasterio (https://anaconda.org/conda-forge/rasterio)<br/>
 NumPy (https://anaconda.org/anaconda/numpy)<br/>
 SciPy (https://anaconda.org/anaconda/scipy)<br/>
-Seaborn ((https://anaconda.org/anaconda/seaborn))<br/>
-
-### Other requirements:<br/>
-The codes are intended to be run in the JupyterLab environment.<br />
+Seaborn (https://anaconda.org/anaconda/seaborn)<br/>
 
 ### Letter-value plots citation::<br/>
 Hofmann, H., Wickham, H., & Kafadar, K. (2017). Letter-Value Plots: Boxplots for Large Data. Journal of Computational and Graphical Statistics, 26(3), 469–477. https://doi.org/10.1080/10618600.2017.1305277.<br/>
