@@ -14,13 +14,13 @@ LvPlots.lvplots(image,rule='trustworthy',ci=95,ol_prop=0.007,side='both',left_fi
 
 ```image``` is the image to be processed. The ```image``` must be a single band image and in NumPy array format. You can use Rasterio or GDAL to open your image file.<br/>
 
-```rule``` is a parameter to stop the formation of the Letter-value plots. There are four rules that can be set for ```rule```, namely ```'trustworthy'```, ```'proportion'```, ```'tukey'```, and ```'full'```. For a more complete explanation, please read the literature listed below. If you do not set any value for ```rule``` then the default value of ```'trustworthy'``` will be used.<br/>
+```rule``` is a parameter to stop the construction of the Letter-value plots. There are four optional arguments that can be set for ```rule```, namely ```'trustworthy'```, ```'proportion'```, ```'tukey'```, and ```'full'```. For a more complete explanation, please read the literature listed below and https://seaborn.pydata.org/generated/seaborn.boxenplot.html. If you do not set any value for ```rule``` then the default value of ```'trustworthy'``` will be used.<br/>
 
-```ci``` is the confidence interval, the default value is 95%. ```ci``` will only have an effect if ```rule='trustworthy'```. You can set the value to ```ci=90``` or ```ci=99```, according to your needs.<br/>
+```ci``` is the confidence interval, the default setting is ```ci=95``` (meaning 95% confidence interval). ```ci``` will only have an effect if ```rule='trustworthy'```. You can set the value to ```ci=90``` or ```ci=99```, according to your needs.<br/>
 
 ```ol_prop``` is the proportion of outliers. This parameter will only take effect if you set ```rule='proportion'```. The default value is ```0.007```. You can change it to another value, and it must be less than 1.<br/>
 
-```side``` is an option to choose whether outliers are removed on both sides, or only on the left side (outlier values ​​​​that are too low) or only on the right side (outlier values ​​​​that are too high). The default is ```side='both'```, you can set ```side='left'``` or ```side='right'```.
+```side``` is an option to choose whether outliers are removed on both sides, or only on the left side (outlier values ​​​​that are too low) or only on the right side (outlier values ​​​​that are too high). Some mathematical operations will only produce extreme values ​​on the right side or values ​​that are too high, while the low values ​​are still in normal terms. The default settings for the ```side``` parameter is ```side='both'```, you can set ```side='left'``` or ```side='right'```.
 
 ```left_fill``` and ```right_fill``` are values ​​that will replace outlier values, respectively for the left and the right side. By default, outlier values ​​in a digital image on both sides will be replaced with 0. You can use other values ​​if desired. If you want the fence value(s) to be used as replacements for outliers, then ```left_fill``` or ```right_fill``` can be set to ```'fence'```, e.g. ```left_fill='fence'``` or ```right_fill='fence'```.<br/>
 
