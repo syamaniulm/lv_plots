@@ -5,14 +5,16 @@ Letter-value plots is the simple and fast algorithm to eliminate anomalies or ou
 
 You can use the file ```Cleaning_pixel_outliers.ipynb``` as an example of the implementation. The file ```Cleaning_pixel_outliers.ipynb``` and ```LvPlots.py``` file must be located in the same directory.<br/>
 
-The method for calling Letter-value plots:<br/>
+The procedure for calling Letter-value plots:<br/>
 ```
 from LvPlots import LvPlots
 
-LvPlots.lvplots(image,rule='trustworthy',ci=95,ol_prop=0.007,side='both',left_fill=0,right_fill=0,zero=False)
+cleaned_image = LvPlots.lvplots(image,rule='trustworthy',ci=95,ol_prop=0.007,side='both',left_fill=0,right_fill=0,zero=False)
 ```
 
-```image``` is the image to be processed. The ```image``` must be a single band image and in NumPy array format. You can use Rasterio or GDAL to open your image file.<br/>
+```cleaned_image``` is the output image that has been cleaned of outliers.<br/>
+
+```image``` is the original image to be processed. The ```image``` must be a single band image and in NumPy array format. You can use Rasterio or GDAL to open your image file.<br/>
 
 ```rule``` is a parameter to stop the construction of the Letter-value plots. There are four optional arguments that can be set for ```rule```, namely ```'trustworthy'```, ```'proportion'```, ```'tukey'```, and ```'full'```. For a more complete explanation, please read the literature listed below and https://seaborn.pydata.org/generated/seaborn.boxenplot.html. If you do not set any value for ```rule``` then the default value of ```'trustworthy'``` will be used.<br/>
 
