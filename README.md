@@ -1,5 +1,5 @@
 # Letter-value plots
-Letter-value plots to eliminate anomalies or outlier pixel values ​​in digital remote sensing images. Outliers often appear in quite complex mathematical operations, such as exponentials, logarithms, square roots, and so on. Outlier values ​​have the potential to change the visual quality of the image, and of course will have a direct impact on the statistical analysis of the image.<br/>
+Letter-value plots is the simple and fast algorithm to eliminate anomalies or outlier pixel values in digital remote sensing images. Outliers often result from quite complex mathematical operations, such as exponentials, logarithms, square roots, and so on. Outlier values ​​have the potential to change the visual quality of the image, and of course will have a direct impact on the statistical analysis of the image.<br/>
 
 ### Instructions:
 
