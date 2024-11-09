@@ -20,7 +20,7 @@ LvPlots.lvplots(image,rule='trustworthy',ci=95,ol_prop=0.007,side='both',left_fi
 
 ```ol_prop``` is the proportion of outliers. This parameter will only take effect if you set ```rule='proportion'```. The default value is ```0.007```. You can change it to another value, and it must be less than 1.<br/>
 
-```side``` is an option to choose whether outliers are removed on both sides, or only on the left side (outlier values ​​​​that are too low) or only on the right side (outlier values ​​​​that are too high). Some mathematical operations will only produce extreme values ​​on the right side or values ​​that are too high, while the low values ​​are still in normal terms. The default settings for the ```side``` parameter is ```side='both'```, you can set ```side='left'``` or ```side='right'```.
+```side``` is an option to choose whether outliers are removed on both sides, or only on the left side (outlier values ​​​​that are too low) or only on the right side (outlier values ​​​​that are too high). Some mathematical operations will only produce extreme values ​​on the right side or values ​​that are too high, while the low values ​​are still in normal terms. The default setting is ```side='both'```, you can set ```side='left'``` or ```side='right'```.
 
 ```left_fill``` and ```right_fill``` are values ​​that will replace outlier values, respectively for the left and the right side. By default, outlier values ​​in a digital image on both sides will be replaced with 0. You can use other values ​​if desired. If you want the fence value(s) to be used as replacements for outliers, then ```left_fill``` or ```right_fill``` can be set to ```'fence'```, e.g. ```left_fill='fence'``` or ```right_fill='fence'```.<br/>
 
