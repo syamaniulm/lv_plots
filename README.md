@@ -7,6 +7,8 @@ You can use the file ```Cleaning_pixel_outliers.ipynb``` as an example of the im
 
 The method for calling Letter-value plots:<br/>
 ```
+from LvPlots import LvPlots
+
 LvPlots.lvplots(image,rule='trustworthy',ci=95,ol_prop=0.007,side='both',left_fill=0,right_fill=0,zero=False)
 ```
 
@@ -22,7 +24,7 @@ LvPlots.lvplots(image,rule='trustworthy',ci=95,ol_prop=0.007,side='both',left_fi
 
 ```left_fill``` and ```right_fill``` are values ​​that will replace outlier values, respectively for the left and the right side. By default, outlier values ​​in a digital image on both sides will be replaced with 0. You can use other values ​​if desired. If you want the fence value(s) to be used as replacements for outliers, then ```left_fill``` or ```right_fill``` can be set to ```'fence'```, e.g. ```left_fill='fence'``` or ```right_fill='fence'```.<br/>
 
-```zero``` is the option whether the value 0 will be included in the outliers calculation or not. The recommended and the default value is ```False```, meaning the value 0 is not included. If you want the value 0 to be part of the outliers calculation, set ```zero=True```.<br/>
+```zero``` is the option whether the value 0 in the original image will be included in the outliers calculation or not. The recommended and the default value is ```False```, meaning the value 0 is not included. If you want the value 0 to be part of the outliers calculation, set ```zero=True```.<br/>
 
 ### Python prerequisites:<br/>
 Python 3.9 or higher<br/>
